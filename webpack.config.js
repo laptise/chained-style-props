@@ -7,10 +7,9 @@ module.exports = {
     bundle: "./src/index.ts",
   },
   output: {
-    // モジュールバンドルを行った結果を出力する場所やファイル名の指定
-    // "__dirname"はこのファイルが存在するディレクトリを表すnode.jsで定義済みの定数
-    path: path.join(__dirname, "dist"),
-    filename: "[name].js", // [name]はentryで記述した名前(この例ではbundle）が入る
+    filename: "lib.js",
+    library: "chained-style-props",
+    libraryTarget: "umd",
   },
   // モジュールとして扱いたいファイルの拡張子を指定する
   // 例えば「import Foo from './foo'」という記述に対して"foo.ts"という名前のファイルをモジュールとして探す
