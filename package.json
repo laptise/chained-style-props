@@ -19,7 +19,7 @@
   "devDependencies": {
     "typescript": "^4.6.4"
   },
-  "dependencies": {
+  "peerDependencies": {
     "react": "^16.0.0"
   }
 }
