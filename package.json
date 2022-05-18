@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/laptise/chained-style-props#readme",
   "devDependencies": {
+    "@types/react": "^18.0.9",
+    "react": "^18.1.0",
     "typescript": "^4.6.4"
   },
   "peerDependencies": {

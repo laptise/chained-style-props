@@ -37,12 +37,8 @@ export const csp = () => new CspInitiator();
 
 abstract class ChainedStylePropsCore implements CspInitiable {
   constructor(protected keyProps: CSSProperties = {}, protected parent: ChainedStylePropsCore | null = null) {}
-  get style() {
-    return this.end();
-  }
-  private end() {
-    const res = this.getRecursive();
-    return res;
+  get csp() {
+    return this.getRecursive();
   }
   private getRecursive(tree: ChainedStylePropsCore[] = [this]): CSSProperties {
     const parent = this.parent;
@@ -52,19 +48,19 @@ abstract class ChainedStylePropsCore implements CspInitiable {
     return this.parent;
   }
   public get Flex() {
-    return new ChainedFlexBoxProps(this.style);
+    return new ChainedFlexBoxProps(this.csp);
   }
   public get Size() {
-    return new ChainedSizeProps(this.style);
+    return new ChainedSizeProps(this.csp);
   }
   public get Box() {
-    return new ChainedBoxProps(this.style);
+    return new ChainedBoxProps(this.csp);
   }
   public get Border() {
-    return new ChainedBorderProps(this.style);
+    return new ChainedBorderProps(this.csp);
   }
   public get Text() {
-    return new ChainedTextProps(this.style);
+    return new ChainedTextProps(this.csp);
   }
 }
 
@@ -177,6 +173,23 @@ export class ChainedBorderProps extends ChainedStylePropsCore {
     this.keyProps.borderWidth = px;
     return this;
   }
+  public color(v: string) {
+    this.keyProps.borderColor = v;
+    return this;
+  }
+  public style(v: string) {
+    this.keyProps.borderStyle = v;
+    return this;
+  }
+  public get solid() {
+    this.keyProps.borderStyle = "solid";
+    return this;
+  }
+
+  public get dashed() {
+    this.keyProps.borderStyle = "dashed";
+    return this;
+  }
 }
 
 export class ChainedTextProps extends ChainedStylePropsCore {
@@ -185,11 +198,14 @@ export class ChainedTextProps extends ChainedStylePropsCore {
   }
   public fontSize(value: number | string) {
     this.keyProps.fontSize = value;
+    return this;
   }
   public overFlow(value: any) {
     this.keyProps.textOverflow = value;
+    return this;
   }
   public whiteSpace(value: any) {
     this.keyProps.whiteSpace = value;
+    return this;
   }
 }
