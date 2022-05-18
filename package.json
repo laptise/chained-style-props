@@ -1,0 +1,25 @@
+{
+  "name": "chained-style-props",
+  "version": "0.0.1",
+  "description": "Write Css styles in react easily.",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laptise/chained-style-props.git"
+  },
+  "author": "laptise@live.jp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/laptise/chained-style-props/issues"
+  },
+  "homepage": "https://github.com/laptise/chained-style-props#readme",
+  "devDependencies": {
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "react": "^18.1.0"
+  }
+}
