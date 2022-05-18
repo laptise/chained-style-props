@@ -35,12 +35,13 @@ class CspInitiator implements CspInitiable {
 /**Initiate Chained Style Properties */
 export const csp = () => new CspInitiator();
 
-abstract class ChainedStylePropsCore implements CspInitiable {
-  constructor(protected keyProps: CSSProperties = {}, protected parent: ChainedStylePropsCore | null = null) {}
+abstract class ChainedPropsCore implements CspInitiable {
+  constructor(protected keyProps: CSSProperties = {}, protected parent: ChainedPropsCore | null = null) {}
+  /**Close Chained style props and generate style object */
   get csp() {
     return this.getRecursive();
   }
-  private getRecursive(tree: ChainedStylePropsCore[] = [this]): CSSProperties {
+  protected getRecursive(tree: ChainedPropsCore[] = [this]): CSSProperties {
     const parent = this.parent;
     return parent?.parent ? parent.getRecursive([...tree, this]) : tree.reduce((props, t) => ({ ...props, ...t.keyProps }), {});
   }
@@ -64,7 +65,7 @@ abstract class ChainedStylePropsCore implements CspInitiable {
   }
 }
 
-export class ChainedFlexBoxProps extends ChainedStylePropsCore {
+export class ChainedFlexBoxProps extends ChainedPropsCore {
   constructor(keyProps: CSSProperties = {}) {
     super({ ...keyProps, display: "flex" });
   }
@@ -83,6 +84,9 @@ export class ChainedFlexBoxProps extends ChainedStylePropsCore {
     this.keyProps.gap = gap;
     return this;
   }
+  /**Align flex children vertical top.
+   * When direction is row, "flex-start" will be set on AlignItems, otherwise on JustifyContent.
+   */
   get topAlign() {
     if (this.keyProps.flexDirection === "row") {
       this.keyProps.alignItems = "flex-start";
@@ -91,6 +95,9 @@ export class ChainedFlexBoxProps extends ChainedStylePropsCore {
     }
     return this;
   }
+  /**Align flex children vertical bottom.
+   * When direction is row, "flex-end" will be set on AlignItems, otherwise on JustifyContent.
+   */
   get bottomAlign() {
     if (this.keyProps.flexDirection === "row") {
       this.keyProps.alignItems = "flex-end";
@@ -115,12 +122,19 @@ export class ChainedFlexBoxProps extends ChainedStylePropsCore {
     }
     return this;
   }
+  /**Align children right in the middle */
+  get centerAlign() {
+    this.keyProps.justifyContent = "center";
+    this.keyProps.alignItems = "center";
+    return this;
+  }
 }
 
-export class ChainedSizeProps extends ChainedStylePropsCore {
+export class ChainedSizeProps extends ChainedPropsCore {
   constructor(keyProps: CSSProperties = {}) {
     super({ ...keyProps });
   }
+  /**set Width prop */
   public width(px: number | string) {
     this.keyProps.width = px;
     return this;
@@ -147,7 +161,7 @@ export class ChainedSizeProps extends ChainedStylePropsCore {
   }
 }
 
-export class ChainedBoxProps extends ChainedStylePropsCore {
+export class ChainedBoxProps extends ChainedPropsCore {
   constructor(keyProps: CSSProperties = {}) {
     super({ ...keyProps });
   }
@@ -161,38 +175,43 @@ export class ChainedBoxProps extends ChainedStylePropsCore {
   }
 }
 
-export class ChainedBorderProps extends ChainedStylePropsCore {
+export class ChainedBorderProps extends ChainedPropsCore {
   constructor(keyProps: CSSProperties = {}) {
     super({ ...keyProps });
   }
+  /**BorderRaidius */
   public radius(px: number | string) {
     this.keyProps.borderRadius = px;
     return this;
   }
+  /**BorderWidth */
   public width(px: number | string) {
     this.keyProps.borderWidth = px;
     return this;
   }
+  /**BorderColor */
   public color(v: string) {
     this.keyProps.borderColor = v;
     return this;
   }
+  /**BorderStyle */
   public style(v: string) {
     this.keyProps.borderStyle = v;
     return this;
   }
+  /**BorderStyle to Solid */
   public get solid() {
     this.keyProps.borderStyle = "solid";
     return this;
   }
-
+  /**BoderStyle to Dashed */
   public get dashed() {
     this.keyProps.borderStyle = "dashed";
     return this;
   }
 }
 
-export class ChainedTextProps extends ChainedStylePropsCore {
+export class ChainedTextProps extends ChainedPropsCore {
   constructor(keyProps: CSSProperties = {}) {
     super({ ...keyProps });
   }
@@ -200,10 +219,12 @@ export class ChainedTextProps extends ChainedStylePropsCore {
     this.keyProps.fontSize = value;
     return this;
   }
-  public overFlow(value: any) {
+  /** Set TextOverflow props */
+  public overflow(value: any) {
     this.keyProps.textOverflow = value;
     return this;
   }
+  /**Set Whitespace props */
   public whiteSpace(value: any) {
     this.keyProps.whiteSpace = value;
     return this;
