@@ -10,6 +10,7 @@ module.exports = {
     filename: "lib.js",
     library: "chained-style-props",
     libraryTarget: "umd",
+    globalObject: "this",
   },
   // モジュールとして扱いたいファイルの拡張子を指定する
   // 例えば「import Foo from './foo'」という記述に対して"foo.ts"という名前のファイルをモジュールとして探す

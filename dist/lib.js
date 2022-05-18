@@ -15,7 +15,7 @@
 		exports["chained-style-props"] = factory();
 	else
 		root["chained-style-props"] = factory();
-})(self, () => {
+})(this, () => {
 return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
