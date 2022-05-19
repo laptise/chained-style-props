@@ -159,6 +159,14 @@ export class ChainedSizeProps extends ChainedPropsCore {
     this.keyProps.maxHeight = px;
     return this;
   }
+  public padding(px: number | string) {
+    this.keyProps.padding = px;
+    return this;
+  }
+  public margin(px: number | string) {
+    this.keyProps.margin = px;
+    return this;
+  }
 }
 
 export class ChainedBoxProps extends ChainedPropsCore {
