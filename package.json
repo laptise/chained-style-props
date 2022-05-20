@@ -1,12 +1,14 @@
 {
   "name": "chained-style-props",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Write Css styles in react easily.",
-  "main": "index.ts",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode=development",
-    "start": "webpack serve --mode=development"
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
