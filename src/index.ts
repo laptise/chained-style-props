@@ -15,25 +15,26 @@ type CspInitiable = {
 
 /**CSP Initiator */
 class CspInitiator implements CspInitiable {
+  constructor(private extend: CSSProperties) {}
   public get Flex() {
-    return new ChainedFlexBoxProps();
+    return new ChainedFlexBoxProps(this.extend);
   }
   public get Size() {
-    return new ChainedSizeProps();
+    return new ChainedSizeProps(this.extend);
   }
   public get Box() {
-    return new ChainedBoxProps();
+    return new ChainedBoxProps(this.extend);
   }
   public get Border() {
-    return new ChainedBorderProps();
+    return new ChainedBorderProps(this.extend);
   }
   public get Text() {
-    return new ChainedTextProps();
+    return new ChainedTextProps(this.extend);
   }
 }
 
 /**Initiate Chained Style Properties */
-export const csp = () => new CspInitiator();
+export const csp = (extend: CSSProperties = {}) => new CspInitiator(extend);
 
 abstract class ChainedPropsCore implements CspInitiable {
   constructor(protected keyProps: CSSProperties = {}, protected parent: ChainedPropsCore | null = null) {}
