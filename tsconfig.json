@@ -9,5 +9,5 @@
     "pretty": true,
     "newLine": "lf",
     "outDir": "dist"
-  }
+  },
 }
