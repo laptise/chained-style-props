@@ -19,4 +19,16 @@ export class ChainedTextProps extends ChainedPropsCore {
     this.keyProps.whiteSpace = value;
     return this;
   }
+  public get normal() {
+    this.keyProps.fontWeight = "normal";
+    return this;
+  }
+  public get bold() {
+    this.keyProps.fontWeight = "bold";
+    return this;
+  }
+  public get lighter() {
+    this.keyProps.fontWeight = "lighter";
+    return this;
+  }
 }
