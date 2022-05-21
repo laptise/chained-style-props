@@ -100,3 +100,5 @@ Supported props in each classes are introduced in `class/folder`. It also has cl
 - Elm : Elements settings (e.g. `pointerEvents`, `backgroundColor`)
 - Size : settings about size (e.g. `height`, `width`, `padding`, `margin` etc)
 - Text : settings about fonts. (g.s. `fontWeight`, `fontSize`, etc)
+- Border: settings about border.
+- Position: setting about positions.
