@@ -85,4 +85,13 @@ In Csp, `boderRadius:2` can be called as `Radius(2)` from `Border` class.
 csp().Border.radius(2).csp;
 ```
 
-## Properties
+## Classes and inlcudings
+
+---
+
+Supported props in each classes are introduced in `class/folder`. It also has class definition file, so you can read them.
+
+- FlexBox : `display:flex` settings. (e.g. `gap`, `wrap`, `direction`, flex align features )
+- Elm : Elements settings (e.g. `pointerEvents`, `backgroundColor`)
+- Size : settings about size (e.g. `height`, `width`, `padding`, `margin` etc)
+- Text : settings about fonts. (g.s. `fontWeight`, `fontSize`, etc)

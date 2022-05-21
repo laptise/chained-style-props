@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { ChainedPropsCore } from "./base";
+import { ChainedPropsCore } from "../base";
 
 export class ChainedFlexBoxProps extends ChainedPropsCore {
   constructor(keyProps: CSSProperties = {}) {

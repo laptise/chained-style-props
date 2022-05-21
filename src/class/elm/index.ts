@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { ChainedPropsCore } from "./base";
+import { ChainedPropsCore } from "../base";
 import { Property } from "csstype";
 
 export class ChainedElmProps extends ChainedPropsCore {
