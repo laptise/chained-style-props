@@ -19,8 +19,13 @@ Write styles in method chaining, Instead of `object` that provides key and value
 ```tsx
 <Component
   style={
-    csp().Flex.column.topAlign.horizontalCenterAlign.Size.minWidth(320).minHeight("100%").Box.padding(5).Border.solid.radius(2).width(1).color("#ccc")
-      .csp
+    csp() //
+      .Flex.column.topAlign.horizontalCenterAlign.Size.minWidth(320)
+      .minHeight("100%")
+      .Box.padding(5)
+      .Border.solid.radius(2)
+      .width(1)
+      .color("#ccc").csp
   }
 />
 ```
