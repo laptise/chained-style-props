@@ -45,7 +45,7 @@ class FlexBox extends ChainedFlexBoxProps implements Initiables {
   public get Text() {
     return this.initiator.Text.injectProps(this.keyProps);
   }
-  public get Border(): any {
+  public get Border() {
     return this.initiator.Border.injectProps(this.keyProps);
   }
   public get Size() {
@@ -69,7 +69,7 @@ class Size extends ChainedSizeProps implements Initiables {
   public get Text() {
     return this.initiator.Text.injectProps(this.keyProps);
   }
-  public get Border(): any {
+  public get Border() {
     return this.initiator.Border.injectProps(this.keyProps);
   }
   public get Size() {
@@ -93,7 +93,7 @@ class Border extends ChainedBorderProps implements Initiables {
   public get Text() {
     return this.initiator.Text.injectProps(this.keyProps);
   }
-  public get Border(): any {
+  public get Border() {
     return this.initiator.Border.injectProps(this.keyProps);
   }
   public get Size() {
@@ -117,7 +117,7 @@ class Text extends ChainedTextProps implements Initiables {
   public get Text() {
     return this.initiator.Text.injectProps(this.keyProps);
   }
-  public get Border(): any {
+  public get Border() {
     return this.initiator.Border.injectProps(this.keyProps);
   }
   public get Size() {
@@ -141,7 +141,7 @@ class Elm extends ChainedElmProps implements Initiables {
   public get Text() {
     return this.initiator.Text.injectProps(this.keyProps);
   }
-  public get Border(): any {
+  public get Border() {
     return this.initiator.Border.injectProps(this.keyProps);
   }
   public get Size() {
@@ -165,7 +165,7 @@ class Position extends ChainedPositionProps implements Initiables {
   public get Text() {
     return this.initiator.Text.injectProps(this.keyProps);
   }
-  public get Border(): any {
+  public get Border() {
     return this.initiator.Border.injectProps(this.keyProps);
   }
   public get Size() {
