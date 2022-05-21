@@ -1,50 +1,88 @@
 🚧 This library is under construction! 🚧
 
+🚧 Classes and Props are not defined enough yet! 🚧
+
+🚧 Classes and Props may be changed ! 🚧
+
 # Chained Style Props - Csp
 
 Csp provides easier way to write `Inline styles` on `React.js`
 
-## Concepts & Goal
+# What is Csp?
 
-- Write inline style easier.
-- Write inline style more easy to read.
+Csp (chained style props) is `TypeScript` library that generates inline style `CSSProperties` of `React.js`. Literraly chained style props.
 
-# How to
+## Method chaining style
 
-## Sample
-
-Csp like writes inline style like below.
+Write styles in method chaining, Instead of `object` that provides key and value.
 
 ```tsx
-<Component style={
-    csp()
-    .Flex.column.topAlign.horizontalCenterAlign
-    .Size.minWidth(320).minHeight("100%")
-    .Box.padding(5)
-    .Border.solid.radius(2).width(1).color("#ccc")
-    .csp}>
+<Component
+  style={
+    csp().Flex.column.topAlign.horizontalCenterAlign.Size.minWidth(320).minHeight("100%").Box.padding(5).Border.solid.radius(2).width(1).color("#ccc")
+      .csp
+  }
+/>
 ```
 
-This code generates style object like this.
+Each props are categorized, Can only be called from parent class.
+
+## Extendible style
+
+It also provides extending. So you can reuse declared styles.
 
 ```tsx
-<Component style={{
-    display : "flex",
-    flexDirection : "column",
-    justifyContents : "flex-start",
-    alignItems : "center",
-    minWidth : 320,
-    minHeight : "100%",
-    padding : 5,
-    borderStyle : "solid",
-    borderRadius : 2,
-    borderWidth : 1,
-    borderColor : "#ccc"
-}}>
+import { commonCspStyle } from "/path-to-file";
+
+// extends commonCspStyle, adding size adjustments.
+const menuSize = csp(commonCspStyle).Size.minWidth(320).minHeight("100%").csp;
+
+// extends menuSize, adding display:"flex", flexDiretion:"column"
+const componentStyle = csp(menuSize).Flex.column.csp; //
+
+<Component style={componentStyle} />;
 ```
 
-As you can see, Csp chains `CSS Properties` with `.` chain.
+It works with Typescript, so you can write code faster on your IDE.
 
-Each css props are classificated to several `Chained Style Class`.
+## Are you interested in?
 
-Csp start with `csp()` and ends with `csp`
+Get started with
+
+```
+npm install chained-style-props
+// or
+yarn add chained-style-props
+```
+
+# How to use
+
+Here
+
+## Basic rules
+
+---
+
+- Csp chains `CSS Properties` with `.` chain.
+
+- Must start with `csp()` and ends with `csp`.
+
+- You can extend other declared csp into `csp(here)`.
+
+- All of the props are can only be called from their parent classes.
+
+## `Props` are categorized into `Chained Class`.
+
+---
+
+Each css props are classificated to several Class into `Flex`, `Border`, `Size`, `Text`... And we call these classes `Chained Class`.
+
+In Css, every props are available anywhere. So we can write `flex-direction:"column"` and `fontSize:12` at same time. It's very easy to write, but the names are too long and it should be considered to make easy to read (e.g. sort orders). Otherwise, it will be cause mamy problems.
+
+In Csp, `boderRadius:2` can be called as `Radius(2)` from `Border` class.
+
+```tsx
+csp().Border.radius(2).csp;
+```
+
+## Properties
