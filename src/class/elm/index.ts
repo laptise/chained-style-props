@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { ChainedPropsCore } from "../base";
+import { ChainedPropsCore } from "../core";
 import { Property } from "csstype";
 
 export class ChainedElmProps extends ChainedPropsCore {
@@ -12,5 +12,10 @@ export class ChainedElmProps extends ChainedPropsCore {
   }
   public pointerEvents(v: Property.PointerEvents | undefined) {
     this.keyProps.pointerEvents = v;
+    return this;
+  }
+  public display(v: Property.Display | undefined) {
+    this.keyProps.display = v;
+    return this;
   }
 }

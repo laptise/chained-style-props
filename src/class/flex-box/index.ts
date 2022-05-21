@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { ChainedPropsCore } from "../base";
+import { ChainedPropsCore } from "../core";
 import { Property } from "csstype";
 
 export class ChainedFlexBoxProps extends ChainedPropsCore {
@@ -9,6 +9,7 @@ export class ChainedFlexBoxProps extends ChainedPropsCore {
   /**Set flex direction */
   public direction(v: Property.FlexDirection | undefined) {
     this.keyProps.flexDirection = v;
+    return this;
   }
   /**Set flex direction to Row */
   public get row() {
