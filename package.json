@@ -1,6 +1,6 @@
 {
   "name": "chained-style-props",
-  "version": "0.0.521",
+  "version": "0.0.522",
   "description": "Write Css styles in react easily.",
   "main": "dist/index.js",
   "files": [
