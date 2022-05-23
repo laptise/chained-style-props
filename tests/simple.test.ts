@@ -1,7 +1,7 @@
 import { ChainedBorder } from "../dist/class/border";
 import { ChainedFlexBox } from "../dist/class/flex-box";
-import { ChainedTransitionProps } from "../dist/class/transition";
-import { ChainedPositionProps } from "../dist/class/position";
+import { ChainedTransition } from "../dist/class/transition";
+import { ChainedPosition } from "../dist/class/position";
 import { csp } from "../dist/index";
 
 test("csp loaded", () => {
