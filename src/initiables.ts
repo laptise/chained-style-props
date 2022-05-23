@@ -8,18 +8,27 @@ import { ChainedSize } from "./class/size";
 import { ChainedText } from "./class/text";
 import { ChainedTransition } from "./class/transition";
 
+/**Chained class with Initiator */
 type Initiable<T> = T & Initiables & ChainedPropsCore;
 
 type Initiables = {
+  /**Call `ChainedFlexBox` class */
   get Flex(): Initiable<ChainedFlexBox>;
+  /**Call `ChainedSize` class */
   get Size(): Initiable<ChainedSize>;
+  /**Call `ChainedBorder` class */
   get Border(): Initiable<ChainedBorder>;
+  /**Call `ChainedText` class */
   get Text(): Initiable<ChainedText>;
+  /**Call `ChainedElm` class */
   get Elm(): Initiable<ChainedElm>;
+  /**Call `ChainedPosition` class */
   get Position(): Initiable<ChainedPosition>;
+  /**Call `ChainedTransition` class */
   get Transition(): Initiable<ChainedTransition>;
 };
 
+/**Generate mixin class */
 function mixinClass<T extends ChainedPropsCore>(c: new (props: CSSProperties) => ChainedPropsCore) {
   const factory = (initiator: CspInitiator, extend: CSSProperties) => {
     return new (class extends c implements Initiables {

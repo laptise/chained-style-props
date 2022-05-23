@@ -38,12 +38,12 @@ export class ChainedSize extends ChainedPropsCore {
     this.keyProps.margin = px;
     return this;
   }
-  /**Set BoxSizing : "border-box" */
+  /**Set `boxSizing : "border-box"` */
   public get borderBox() {
     this.keyProps.boxSizing = "border-box";
     return this;
   }
-  /**Set BoxSizing : "content-box" */
+  /**Set `boxSizing : "content-box"` */
   public get contentBox() {
     this.keyProps.boxSizing = "content-box";
     return this;
