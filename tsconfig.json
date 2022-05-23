@@ -10,4 +10,7 @@
     "newLine": "lf",
     "outDir": "dist"
   },
+    "include": [
+      "src/**/*",
+    ]
 }

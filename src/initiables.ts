@@ -1,233 +1,101 @@
 import { CSSProperties } from "react";
-import { ChainedBorderProps } from "./class/border";
-import { ChainedElmProps } from "./class/elm";
-import { ChainedFlexBoxProps } from "./class/flex-box";
-import { ChainedPositionProps } from "./class/position";
-import { ChainedSizeProps } from "./class/size";
-import { ChainedTextProps } from "./class/text";
-import { ChainedTransitionProps } from "./class/transition";
+import { ChainedBorder } from "./class/border";
+import { ChainedPropsCore } from "./class/core";
+import { ChainedElm } from "./class/elm";
+import { ChainedFlexBox } from "./class/flex-box";
+import { ChainedPosition } from "./class/position";
+import { ChainedSize } from "./class/size";
+import { ChainedText } from "./class/text";
+import { ChainedTransition } from "./class/transition";
+
+type Initiable<T> = T & Initiables & ChainedPropsCore;
 
 type Initiables = {
-  get Flex(): FlexBox;
-  get Size(): Size;
-  get Border(): Border;
-  get Text(): Text;
-  get Elm(): Elm;
-  get Position(): Position;
-  get Transition(): Transition;
+  get Flex(): Initiable<ChainedFlexBox>;
+  get Size(): Initiable<ChainedSize>;
+  get Border(): Initiable<ChainedBorder>;
+  get Text(): Initiable<ChainedText>;
+  get Elm(): Initiable<ChainedElm>;
+  get Position(): Initiable<ChainedPosition>;
+  get Transition(): Initiable<ChainedTransition>;
 };
+
+function mixinClass<T extends ChainedPropsCore>(c: new (props: CSSProperties) => ChainedPropsCore) {
+  const factory = (initiator: CspInitiator, extend: CSSProperties) => {
+    return new (class extends c implements Initiables {
+      constructor(protected initiator: CspInitiator, extend: CSSProperties = {}) {
+        super(extend);
+      }
+      public get Text() {
+        return this.initiator.Text.injectProps(this.keyProps) as Initiable<ChainedText>;
+      }
+      public get Border() {
+        return this.initiator.Border.injectProps(this.keyProps) as Initiable<ChainedBorder>;
+      }
+      public get Size() {
+        return this.initiator.Size.injectProps(this.keyProps) as Initiable<ChainedSize>;
+      }
+      public get Flex() {
+        return this.initiator.Flex.injectProps(this.keyProps) as Initiable<ChainedFlexBox>;
+      }
+      public get Elm() {
+        return this.initiator.Elm.injectProps(this.keyProps) as Initiable<ChainedElm>;
+      }
+      public get Position() {
+        return this.initiator.Position.injectProps(this.keyProps) as Initiable<ChainedPosition>;
+      }
+      public get Transition() {
+        return this.initiator.Transition.injectProps(this.keyProps) as Initiable<ChainedTransition>;
+      }
+    })(initiator, extend);
+  };
+
+  return factory as unknown as (initiator: CspInitiator, extend: CSSProperties) => Initiable<T>;
+}
 
 /**CSP Initiator */
 export class CspInitiator implements Initiables {
+  private get _flex() {
+    return mixinClass<ChainedFlexBox>(ChainedFlexBox);
+  }
+  private get _size() {
+    return mixinClass<ChainedSize>(ChainedSize);
+  }
+  private get _border() {
+    return mixinClass<ChainedBorder>(ChainedBorder);
+  }
+  private get _text() {
+    return mixinClass<ChainedText>(ChainedText);
+  }
+  private get _elm() {
+    return mixinClass<ChainedElm>(ChainedElm);
+  }
+  private get _position() {
+    return mixinClass<ChainedPosition>(ChainedPosition);
+  }
+  private get _transition() {
+    return mixinClass<ChainedTransition>(ChainedTransition);
+  }
   constructor(private extend: CSSProperties) {}
-  public get Flex(): FlexBox {
-    return new FlexBox(this, this.extend);
+  public get Flex() {
+    return this._flex(this, this.extend);
   }
-  public get Size(): Size {
-    return new Size(this, this.extend);
+  public get Size() {
+    return this._size(this, this.extend);
   }
-  public get Border(): Border {
-    return new Border(this, this.extend);
+  public get Border() {
+    return this._border(this, this.extend);
   }
-  public get Text(): Text {
-    return new Text(this, this.extend);
+  public get Text() {
+    return this._text(this, this.extend);
   }
-  public get Elm(): Elm {
-    return new Elm(this, this.extend);
+  public get Elm() {
+    return this._elm(this, this.extend);
   }
-  public get Position(): Position {
-    return new Position(this, this.extend);
+  public get Position() {
+    return this._position(this, this.extend);
   }
-  public get Transition(): Transition {
-    return new Transition(this, this.extend);
-  }
-}
-
-class FlexBox extends ChainedFlexBoxProps implements Initiables {
-  constructor(protected initiator: CspInitiator, extend: CSSProperties = {}) {
-    super(extend);
-  }
-  public get Text(): Text {
-    return this.initiator.Text.injectProps(this.keyProps);
-  }
-  public get Border(): Border {
-    return this.initiator.Border.injectProps(this.keyProps);
-  }
-  public get Size(): Size {
-    return this.initiator.Size.injectProps(this.keyProps);
-  }
-  public get Flex(): FlexBox {
-    return this.initiator.Flex.injectProps(this.keyProps);
-  }
-  public get Elm(): Elm {
-    return this.initiator.Elm.injectProps(this.keyProps);
-  }
-  public get Position(): Position {
-    return this.initiator.Position.injectProps(this.keyProps);
-  }
-  public get Transition(): Transition {
-    return this.initiator.Transition.injectProps(this.keyProps);
-  }
-}
-
-class Size extends ChainedSizeProps implements Initiables {
-  constructor(protected initiator: CspInitiator, extend: CSSProperties = {}) {
-    super(extend);
-  }
-  public get Text(): Text {
-    return this.initiator.Text.injectProps(this.keyProps);
-  }
-  public get Border(): Border {
-    return this.initiator.Border.injectProps(this.keyProps);
-  }
-  public get Size(): Size {
-    return this.initiator.Size.injectProps(this.keyProps);
-  }
-  public get Flex(): FlexBox {
-    return this.initiator.Flex.injectProps(this.keyProps);
-  }
-  public get Elm(): Elm {
-    return this.initiator.Elm.injectProps(this.keyProps);
-  }
-  public get Position(): Position {
-    return this.initiator.Position.injectProps(this.keyProps);
-  }
-  public get Transition(): Transition {
-    return this.initiator.Transition.injectProps(this.keyProps);
-  }
-}
-
-class Border extends ChainedBorderProps implements Initiables {
-  constructor(protected initiator: CspInitiator, extend: CSSProperties = {}) {
-    super(extend);
-  }
-  public get Text(): Text {
-    return this.initiator.Text.injectProps(this.keyProps);
-  }
-  public get Border(): Border {
-    return this.initiator.Border.injectProps(this.keyProps);
-  }
-  public get Size(): Size {
-    return this.initiator.Size.injectProps(this.keyProps);
-  }
-  public get Flex(): FlexBox {
-    return this.initiator.Flex.injectProps(this.keyProps);
-  }
-  public get Elm(): Elm {
-    return this.initiator.Elm.injectProps(this.keyProps);
-  }
-  public get Position(): Position {
-    return this.initiator.Position.injectProps(this.keyProps);
-  }
-  public get Transition(): Transition {
-    return this.initiator.Transition.injectProps(this.keyProps);
-  }
-}
-
-class Text extends ChainedTextProps implements Initiables {
-  constructor(protected initiator: CspInitiator, extend: CSSProperties = {}) {
-    super(extend);
-  }
-  public get Text(): Text {
-    return this.initiator.Text.injectProps(this.keyProps);
-  }
-  public get Border(): Border {
-    return this.initiator.Border.injectProps(this.keyProps);
-  }
-  public get Size(): Size {
-    return this.initiator.Size.injectProps(this.keyProps);
-  }
-  public get Flex(): FlexBox {
-    return this.initiator.Flex.injectProps(this.keyProps);
-  }
-  public get Elm(): Elm {
-    return this.initiator.Elm.injectProps(this.keyProps);
-  }
-  public get Position(): Position {
-    return this.initiator.Position.injectProps(this.keyProps);
-  }
-  public get Transition(): Transition {
-    return this.initiator.Transition.injectProps(this.keyProps);
-  }
-}
-
-class Elm extends ChainedElmProps implements Initiables {
-  constructor(protected initiator: CspInitiator, extend: CSSProperties = {}) {
-    super(extend);
-  }
-  public get Text(): Text {
-    return this.initiator.Text.injectProps(this.keyProps);
-  }
-  public get Border(): Border {
-    return this.initiator.Border.injectProps(this.keyProps);
-  }
-  public get Size(): Size {
-    return this.initiator.Size.injectProps(this.keyProps);
-  }
-  public get Flex(): FlexBox {
-    return this.initiator.Flex.injectProps(this.keyProps);
-  }
-  public get Elm(): Elm {
-    return this.initiator.Elm.injectProps(this.keyProps);
-  }
-  public get Position(): Position {
-    return this.initiator.Position.injectProps(this.keyProps);
-  }
-  public get Transition(): Transition {
-    return this.initiator.Transition.injectProps(this.keyProps);
-  }
-}
-
-class Position extends ChainedPositionProps implements Initiables {
-  constructor(protected initiator: CspInitiator, extend: CSSProperties = {}) {
-    super(extend);
-  }
-  public get Text(): Text {
-    return this.initiator.Text.injectProps(this.keyProps);
-  }
-  public get Border(): Border {
-    return this.initiator.Border.injectProps(this.keyProps);
-  }
-  public get Size(): Size {
-    return this.initiator.Size.injectProps(this.keyProps);
-  }
-  public get Flex(): FlexBox {
-    return this.initiator.Flex.injectProps(this.keyProps);
-  }
-  public get Elm(): Elm {
-    return this.initiator.Elm.injectProps(this.keyProps);
-  }
-  public get Position(): Position {
-    return this.initiator.Position.injectProps(this.keyProps);
-  }
-  public get Transition(): Transition {
-    return this.initiator.Transition.injectProps(this.keyProps);
-  }
-}
-
-class Transition extends ChainedTransitionProps implements Initiables {
-  constructor(protected initiator: CspInitiator, extend: CSSProperties = {}) {
-    super(extend);
-  }
-  public get Text(): Text {
-    return this.initiator.Text.injectProps(this.keyProps);
-  }
-  public get Border(): Border {
-    return this.initiator.Border.injectProps(this.keyProps);
-  }
-  public get Size(): Size {
-    return this.initiator.Size.injectProps(this.keyProps);
-  }
-  public get Flex(): FlexBox {
-    return this.initiator.Flex.injectProps(this.keyProps);
-  }
-  public get Elm(): Elm {
-    return this.initiator.Elm.injectProps(this.keyProps);
-  }
-  public get Position(): Position {
-    return this.initiator.Position.injectProps(this.keyProps);
-  }
-  public get Transition(): Transition {
-    return this.initiator.Transition.injectProps(this.keyProps);
+  public get Transition() {
+    return this._transition(this, this.extend);
   }
 }

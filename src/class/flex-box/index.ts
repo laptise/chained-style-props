@@ -2,7 +2,7 @@ import { CSSProperties } from "react";
 import { ChainedPropsCore } from "../core";
 import { Property } from "csstype";
 
-export class ChainedFlexBoxProps extends ChainedPropsCore {
+export class ChainedFlexBox extends ChainedPropsCore {
   constructor(keyProps: CSSProperties = {}) {
     super({ ...keyProps, display: "flex" });
   }

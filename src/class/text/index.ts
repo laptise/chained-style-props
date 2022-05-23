@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import { ChainedPropsCore } from "../core";
 
-export class ChainedTextProps extends ChainedPropsCore {
+export class ChainedText extends ChainedPropsCore {
   constructor(keyProps: CSSProperties = {}) {
     super({ ...keyProps });
   }

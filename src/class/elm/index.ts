@@ -2,7 +2,7 @@ import { CSSProperties } from "react";
 import { ChainedPropsCore } from "../core";
 import { Property } from "csstype";
 
-export class ChainedElmProps extends ChainedPropsCore {
+export class ChainedElm extends ChainedPropsCore {
   constructor(keyProps: CSSProperties = {}) {
     super({ ...keyProps });
   }
