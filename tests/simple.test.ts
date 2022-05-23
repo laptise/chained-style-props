@@ -1,5 +1,7 @@
 import { ChainedBorder } from "../dist/class/border";
 import { ChainedFlexBox } from "../dist/class/flex-box";
+import { ChainedTransitionProps } from "../dist/class/transition";
+import { ChainedPositionProps } from "../dist/class/position";
 import { csp } from "../dist/index";
 
 test("csp loaded", () => {
@@ -28,5 +30,5 @@ test("extend=>extend=>inject=>flex=>end", () => {
 });
 
 test("loop around all claases", () => {
-  expect(csp({ width: 300 }).Border.Elm.Flex.Position.Size.Text.csp).toStrictEqual({ width: 300, display: "flex" });
+  expect(csp({ width: 300 }).Position.Elm.Flex.Position.Size.Text.csp).toStrictEqual({ width: 300, display: "flex" });
 });

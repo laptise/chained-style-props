@@ -55,6 +55,7 @@ function mixinClass<T extends ChainedPropsCore>(c: new (props: CSSProperties) =>
 
 /**CSP Initiator */
 export class CspInitiator implements Initiables {
+  constructor(private extend: CSSProperties) {}
   private get _flex() {
     return mixinClass<ChainedFlexBox>(ChainedFlexBox);
   }
@@ -76,26 +77,25 @@ export class CspInitiator implements Initiables {
   private get _transition() {
     return mixinClass<ChainedTransition>(ChainedTransition);
   }
-  constructor(private extend: CSSProperties) {}
-  public get Flex() {
+  public get Flex(): Initiable<ChainedFlexBox> {
     return this._flex(this, this.extend);
   }
-  public get Size() {
+  public get Size(): Initiable<ChainedSize> {
     return this._size(this, this.extend);
   }
-  public get Border() {
+  public get Border(): Initiable<ChainedBorder> {
     return this._border(this, this.extend);
   }
-  public get Text() {
+  public get Text(): Initiable<ChainedText> {
     return this._text(this, this.extend);
   }
-  public get Elm() {
+  public get Elm(): Initiable<ChainedElm> {
     return this._elm(this, this.extend);
   }
-  public get Position() {
+  public get Position(): Initiable<ChainedPosition> {
     return this._position(this, this.extend);
   }
-  public get Transition() {
+  public get Transition(): Initiable<ChainedTransition> {
     return this._transition(this, this.extend);
   }
 }
