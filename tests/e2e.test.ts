@@ -1,15 +1,8 @@
-import { ChainedBorder } from "../dist/class/border";
 import { ChainedFlexBox } from "../dist/class/flex-box";
-import { ChainedTransition } from "../dist/class/transition";
-import { ChainedPosition } from "../dist/class/position";
 import { csp } from "../dist/index";
 
 test("csp loaded", () => {
   expect(csp);
-});
-
-test("border prop instanced", () => {
-  expect(csp().Border).toBeInstanceOf(ChainedBorder);
 });
 
 test("border=>Disp ", () => {
