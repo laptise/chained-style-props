@@ -70,4 +70,20 @@ export class ChainedFlexBox extends ChainedPropsCore {
     this.keyProps.alignItems = "center";
     return this;
   }
+  get leftAlign() {
+    if (this.keyProps.flexDirection === "row") {
+      this.keyProps.justifyContent = "flex-start";
+    } else if (this.keyProps.flexDirection === "column") {
+      this.keyProps.alignItems = "flex-start";
+    }
+    return this;
+  }
+  get rightAlign() {
+    if (this.keyProps.flexDirection === "row") {
+      this.keyProps.justifyContent = "flex-end";
+    } else if (this.keyProps.flexDirection === "column") {
+      this.keyProps.alignItems = "flex-end";
+    }
+    return this;
+  }
 }
