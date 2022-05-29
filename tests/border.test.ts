@@ -14,3 +14,7 @@ test("border color & border width", () => {
 test("border color & border radius & border width", () => {
   expect(csp().Border.radius(10).color("black").width(50).csp).toStrictEqual({ borderRadius: 10, borderColor: "black", borderWidth: 50 });
 });
+
+test("border all loop", () => {
+  expect(csp().Border.BorderBottom.BorderLeft.BorderRight.BorderTop.csp);
+});

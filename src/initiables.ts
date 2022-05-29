@@ -1,5 +1,9 @@
 import { CSSProperties } from "react";
 import { ChainedBorder } from "./class/border";
+import { ChainedBorderBottom } from "./class/border/border-bottom";
+import { ChainedBorderLeft } from "./class/border/border-left";
+import { ChainedBorderRight } from "./class/border/border-right";
+import { ChainedBorderTop } from "./class/border/border-top";
 import { ChainedPropsCore } from "./class/core";
 import { ChainedElm } from "./class/elm";
 import { ChainedFlexBox } from "./class/flex-box";
@@ -18,6 +22,14 @@ type Initiables = {
   get Size(): Initiable<ChainedSize>;
   /**Call `ChainedBorder` class */
   get Border(): Initiable<ChainedBorder>;
+  /**Call `ChainedBorderTop` class */
+  get BorderTop(): Initiable<ChainedBorderTop>;
+  /**Call `ChainedBorderBottom` class */
+  get BorderBottom(): Initiable<ChainedBorderBottom>;
+  /**Call `ChainedBorderLeft` class */
+  get BorderLeft(): Initiable<ChainedBorderLeft>;
+  /**Call `ChainedBorderRight` class */
+  get BorderRight(): Initiable<ChainedBorderRight>;
   /**Call `ChainedText` class */
   get Text(): Initiable<ChainedText>;
   /**Call `ChainedElm` class */
@@ -40,6 +52,18 @@ function mixinClass<T extends ChainedPropsCore>(c: new (props: CSSProperties) =>
       }
       public get Border() {
         return this.initiator.Border.injectProps(this.keyProps) as Initiable<ChainedBorder>;
+      }
+      public get BorderTop() {
+        return this.initiator.BorderTop.injectProps(this.keyProps) as Initiable<ChainedBorderTop>;
+      }
+      public get BorderBottom() {
+        return this.initiator.BorderBottom.injectProps(this.keyProps) as Initiable<ChainedBorderBottom>;
+      }
+      public get BorderLeft() {
+        return this.initiator.BorderLeft.injectProps(this.keyProps) as Initiable<ChainedBorderLeft>;
+      }
+      public get BorderRight() {
+        return this.initiator.BorderRight.injectProps(this.keyProps) as Initiable<ChainedBorderRight>;
       }
       public get Size() {
         return this.initiator.Size.injectProps(this.keyProps) as Initiable<ChainedSize>;
@@ -74,6 +98,18 @@ export class CspInitiator implements Initiables {
   private get _border() {
     return mixinClass<ChainedBorder>(ChainedBorder);
   }
+  private get _borderTop() {
+    return mixinClass<ChainedBorderTop>(ChainedBorderTop);
+  }
+  private get _borderBottom() {
+    return mixinClass<ChainedBorderBottom>(ChainedBorderBottom);
+  }
+  private get _borderLeft() {
+    return mixinClass<ChainedBorderLeft>(ChainedBorderLeft);
+  }
+  private get _borderRight() {
+    return mixinClass<ChainedBorderRight>(ChainedBorderRight);
+  }
   private get _text() {
     return mixinClass<ChainedText>(ChainedText);
   }
@@ -94,6 +130,18 @@ export class CspInitiator implements Initiables {
   }
   public get Border(): Initiable<ChainedBorder> {
     return this._border(this, this.extend);
+  }
+  public get BorderTop(): Initiable<ChainedBorderTop> {
+    return this._borderTop(this, this.extend);
+  }
+  public get BorderBottom(): Initiable<ChainedBorderBottom> {
+    return this._borderBottom(this, this.extend);
+  }
+  public get BorderLeft(): Initiable<ChainedBorderLeft> {
+    return this._borderLeft(this, this.extend);
+  }
+  public get BorderRight(): Initiable<ChainedBorderRight> {
+    return this._borderRight(this, this.extend);
   }
   public get Text(): Initiable<ChainedText> {
     return this._text(this, this.extend);

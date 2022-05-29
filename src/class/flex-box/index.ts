@@ -16,6 +16,10 @@ export class ChainedFlexBox extends ChainedPropsCore {
     this.keyProps.flexDirection = "row";
     return this;
   }
+  public flexSize(v: string | number) {
+    this.keyProps.flex = v;
+    return this;
+  }
   /**Set flex direction to Column */
   get column() {
     this.keyProps.flexDirection = "column";
