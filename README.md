@@ -101,5 +101,6 @@ Supported props in each classes are introduced in `class/folder`. It also has cl
 - Size : settings about size (e.g. `height`, `width`, `padding`, `margin` etc)
 - Text : settings about fonts. (g.s. `fontWeight`, `fontSize`, etc)
 - Border: settings about border.
+- Border Left, Border Right, Border Bottom, Border Top : Border classes grouped into each directions
 - Position: setting about positions.
 - Transition: settings about transitions.
