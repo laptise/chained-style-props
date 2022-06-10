@@ -48,4 +48,8 @@ export class ChainedSize extends ChainedPropsCore {
     this.keyProps.boxSizing = "content-box";
     return this;
   }
+  public flexSize(v: number | string) {
+    this.keyProps.flex = v;
+    return this;
+  }
 }
