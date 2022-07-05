@@ -1,8 +1,10 @@
-🚧 This library is under construction! 🚧
+🚧 This library is Beta version! 🚧
 
-🚧 Classes and Props are not defined enough yet! 🚧
+🚧 Core methods are working, but css coverage is not perfect. 🚧
 
-🚧 Classes and Props may be changed ! 🚧
+🚧 Other css properties are will be added soon. 🚧
+
+🚧 If you want, you can contribute! 🚧
 
 # Chained Style Props - Csp
 
